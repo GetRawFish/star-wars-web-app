@@ -2,11 +2,11 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useFetch, useFetchResources } from '@/composables/useFetch'
-import { useFilterByQuery } from '@/composables/useFilterByQuery.ts'
-import { useSort } from '@/composables/useSort.ts'
-import { useUtils } from '@/composables/useUtils.ts'
-import type { Resource, PersonResponse } from '@/utils/interfaces.ts'
-import { SortDirection, SortField } from '@/utils/enums.ts'
+import { useFilterByQuery } from '@/composables/useFilterByQuery'
+import { useSort } from '@/composables/useSort'
+import { useUtils } from '@/composables/useUtils'
+import type { Resource, PersonResponse } from '@/utils/interfaces'
+import { SortDirection, SortField } from '@/utils/enums'
 import {
   emptyMessage,
   errorMessage,
@@ -16,7 +16,7 @@ import {
   contentListClass,
   contentEmptyClass,
   contentEmptyMessageClass,
-} from '@/utils/consts.ts'
+} from '@/utils/consts'
 
 import ContentFilter from '@/components/ContentFilter.vue'
 import PersonCard from '@/components/PersonCard.vue'
@@ -64,7 +64,7 @@ function doSearch(query: string): void {
 function doSort(sortField: SortField): void {
   resetPagination()
 
-  // choose sort direction
+  // Choose sort direction
   function sortDirection(currentSort: SortDirection): SortDirection {
     return currentSort === SortDirection.desc || currentSort === SortDirection.none
       ? SortDirection.asc

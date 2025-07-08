@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { PersonResponse } from '@/utils/interfaces.ts'
+import type { PersonResponse } from '@/utils/interfaces'
 import { useFormatDate } from '@/composables/useFormatDate'
-import { useUtils } from '@/composables/useUtils.ts'
+import { useUtils } from '@/composables/useUtils'
 import {
   cardMainClass,
   cardTitleClass,

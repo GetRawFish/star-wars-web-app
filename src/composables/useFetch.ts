@@ -1,6 +1,5 @@
-// composables/useFetch.ts
 import { ref, type Ref } from 'vue'
-import type { Resource } from '@/utils/interfaces.ts'
+import type { Resource } from '@/utils/interfaces'
 
 interface UseFetchReturn<T> {
   data: Ref<T | null>
