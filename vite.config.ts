@@ -10,13 +10,6 @@ export default defineConfig({
   server: {
     host: true,
   },
-  css: {
-    preprocessorOptions: {
-      sass: {
-        additionalData: '@use "@/assets/sass/my-main.sass"',
-      },
-    },
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

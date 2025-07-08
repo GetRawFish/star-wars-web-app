@@ -1,0 +1,41 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+@use '../variables/transitions' as transition
+
+.pagination
+  display: flex
+  justify-content: center
+
+  & > ul
+    list-style: none
+    padding-left: unset
+    margin-block: unset
+    display: flex
+    column-gap: gap.$gap--hair
+
+  &__page,
+  &__step
+    display: flex
+    align-items: center
+    height: 1.75rem
+    padding-inline: gap.$gap--xs
+    border-radius: gap.$gap--xxs
+    text-decoration: none
+    color: color.$color--grey-light
+    transition: color,background-color transition.$transition--main
+
+    &:not([aria-disabled='true'], &.exact-active-link):hover
+      background-color: color.$color--grey-dark
+      color: color.$color--white
+
+    &[aria-disabled='true']
+      color: color.$color--grey-dark
+
+    &:focus-visible
+      outline: border.$border--main color.$color--yellow
+
+  &__page[aria-current="page"]
+      background-color: color.$color--yellow
+      color: color.$color--black
+      font-weight: 400

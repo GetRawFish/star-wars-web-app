@@ -1,0 +1,7 @@
+@use './gaps' as gap
+$size--header: calc(3rem + 6px)
+
+$size--breakpoint-l: 2208px
+$size--breakpoint-m: 1024px
+
+$size--full-view: calc(100vh - #{gap.$gap--xl} * 2 - #{$size--header})

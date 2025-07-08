@@ -1,0 +1,17 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+
+.content-filter
+  display: grid
+  row-gap: gap.$gap--l
+
+  &__sort
+    display: flex
+    column-gap: gap.$gap--s
+    align-items: center
+
+    &__buttons
+      display: flex
+      column-gap: gap.$gap--xs
+      align-items: center

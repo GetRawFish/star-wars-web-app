@@ -1,0 +1,69 @@
+@use '../variables/gaps' as gap
+@use '../variables/sizes' as size
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+@use '../variables/transitions' as transition
+
+.header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  display: flex
+  justify-content: center
+  height: 3rem
+  padding-top: gap.$gap--hair
+  background-color: color.$color--black
+  border-bottom: border.$border--thick color.$color--grey-dark
+
+  &__nav
+    display: flex
+    justify-content: space-between
+    width: 100%
+    max-width: size.$size--breakpoint-l
+    padding-inline: gap.$gap--l
+
+    & > ul
+      list-style: none
+      padding-left: unset
+      margin-block: unset
+      display: flex
+      column-gap: gap.$gap--hair
+
+    &__link
+      box-sizing: border-box
+      position: relative
+      display: flex
+      align-items: center
+      justify-content: center
+      height: 100%
+      width: max-content
+      padding:
+        top: gap.$gap--s
+        bottom: gap.$gap--s
+        inline: gap.$gap--s
+      text-decoration: unset
+      transition: transition.$transition--main
+
+      &::after
+        content: ''
+        position: absolute
+        top: 100%
+        display: block
+        border-bottom: border.$border--thick color.$color--yellow
+        width: 0
+        transition: transition.$transition--main
+
+      &:hover
+        background-color: color.$color--grey-darker
+
+      &:focus-visible
+        outline: border.$border--main color.$color--yellow
+        outline-offset: -1px
+
+      &.active-link
+        color: color.$color--white
+
+        &::after
+          width: 100%
+

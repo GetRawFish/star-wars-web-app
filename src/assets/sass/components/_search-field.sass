@@ -1,0 +1,97 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+@use '../variables/font' as font
+@use '../variables/transitions' as transition
+
+.search-field
+  $size--clear-button: 2rem
+  $size--search-button: 3rem
+  display: grid
+  grid-template-columns: 1fr $size--clear-button $size--search-button
+  align-items: center
+
+  &__input
+    grid-column: 1 / 4
+    grid-row: 1 / 2
+    font-family: font.$font--family
+    padding:
+      block: gap.$gap--s
+      left: gap.$gap--m
+      right: calc(#{$size--clear-button} + #{$size--clear-button})
+    background-color: color.$color--black
+    border: border.$border--main color.$color--grey-dark
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration
+      -webkit-appearance: none
+
+    &::placeholder
+      color: color.$color--grey
+
+    &:focus-visible
+      outline: border.$border--main color.$color--yellow
+      outline-offset: gap.$gap--hair
+
+  &__clear,
+  &__submit
+
+    background-color: color.$color--black
+    border: unset
+    transition: transition.$transition--main
+
+    &:hover
+      background-color: color.$color--grey-darker
+
+  &__clear
+    position: relative
+    grid-column: 2 / 3
+    grid-row: 1 / 2
+    display: flex
+    justify-content: center
+    align-items: center
+    height: $size--clear-button
+    width: $size--clear-button
+
+    &::before,
+    &::after
+      $height: 2px
+      content: ''
+      position: absolute
+      display: block
+      height: $height
+      width: calc(#{$size--clear-button} / 2)
+      border-radius: calc(#{$height} / 2)
+      background-color: color.$color--grey
+      transition: transition.$transition--main
+
+    &::before
+      transform: rotate(45deg)
+
+    &::after
+      transform: rotate(-45deg)
+
+    &:hover
+
+      &::before,
+      &::after
+        background-color: color.$color--grey-light
+
+    &:focus-visible
+      outline: border.$border--main color.$color--yellow
+      outline-offset: -1px
+
+
+  &__submit
+    grid-column: 3 / 4
+    grid-row: 1 / 2
+    height: calc(100% - 2px)
+    width: calc(100% - 1px)
+    font-size: 1.25rem
+    color: color.$color--grey
+
+    &:hover
+      color: color.$color--grey-light
+
