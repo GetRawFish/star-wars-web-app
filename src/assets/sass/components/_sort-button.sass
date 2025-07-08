@@ -1,0 +1,45 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+@use '../variables/transitions' as transition
+
+.sort-button
+  $height: 2rem
+  box-sizing: border-box
+  display: flex
+  column-gap: gap.$gap--s
+  align-items: center
+  height: $height
+  padding-inline: gap.$gap--m
+  border: border.$border--main color.$color--grey-dark
+  border-radius: calc(#{$height} / 2)
+  background-color: color.$color--grey-dark
+  color: color.$color--grey-light
+  transition: border,color,background-color transition.$transition--main
+
+  &:is([aria-pressed='true'])
+    color: color.$color--white
+    border-color: color.$color--grey
+
+  &:hover
+    background-color: color.$color--grey-darker
+
+  &:focus-visible
+    outline: border.$border--main color.$color--yellow
+    outline-offset: gap.$gap--hair
+
+  &__label
+    padding-bottom: gap.$gap--hair-s
+
+  &__direction
+    display: grid
+    row-gap: gap.$gap--xxs
+    height: max-content
+    font-size: .3rem
+    color: color.$color--grey
+
+    & > i
+      transition: transition.$transition--main
+
+      &.active
+        color: color.$color--white

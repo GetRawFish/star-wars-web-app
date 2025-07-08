@@ -1,0 +1,49 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+
+.card
+  height: fit-content
+  padding: gap.$gap--s
+  border: border.$border--main color.$color--yellow
+  background-color: color.$color--grey-darker
+
+  &__title
+    margin-block: unset
+
+  &__details,
+  &__details-list
+    border-top: border.$border--main color.$color--grey
+    margin-top: gap.$gap--s
+    padding-top: gap.$gap--s
+
+  &__details
+    display: flex
+    flex-wrap: wrap
+    column-gap: gap.$gap--s
+    row-gap: gap.$gap--xxs
+
+  &__details-list
+
+    & > ul
+      list-style: none
+      padding-left: unset
+      margin:
+        top: gap.$gap--xxs
+        bottom: unset
+      display: inline-flex
+      flex-wrap: wrap
+      column-gap: gap.$gap--s
+      row-gap: gap.$gap--xxs
+
+  &__details > p,
+  &__details-list > ul > li
+    display: inline-flex
+
+    &:not(&:last-of-type)::after
+      content: ''
+      display: block
+      height: 100%
+      width: 1px
+      margin-left: gap.$gap--s
+      background-color: color.$color--grey

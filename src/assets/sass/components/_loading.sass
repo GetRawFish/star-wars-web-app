@@ -1,0 +1,23 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/transitions' as transition
+
+.loading
+  position: absolute
+  inset: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100%
+  width: 100%
+  background-color: color.$color--grey-darker
+  transition: transition.$transition--main
+  z-index: 10
+
+  &__content
+    display: grid
+    row-gap: gap.$gap--l
+    justify-content: center
+
+    & > i
+      font-size: 4rem

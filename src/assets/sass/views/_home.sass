@@ -1,0 +1,55 @@
+@use '../variables/gaps' as gap
+@use '../variables/colors' as color
+@use '../variables/borders' as border
+@use '../variables/transitions' as transition
+
+.home
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100%
+
+  &__content
+    display: grid
+    row-gap: gap.$gap--xl
+    justify-items: center
+
+    & > img
+      max-width: 100%
+
+    & > h1
+      margin:
+        top: gap.$gap--l
+        bottom: unset
+      text-align: center
+
+  &__nav
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: gap.$gap--l
+
+
+    &__link
+      $height: 3.5rem
+      box-sizing: border-box
+      display: flex
+      align-items: center
+      justify-content: center
+      padding-top: gap.$gap--hair
+      height: $height
+      width: 12rem
+      border: border.$border--wide color.$color--grey-dark
+      border-radius: calc(#{$height} / 2)
+      background-color: color.$color--grey-dark
+      text-decoration: unset
+      transition: transition.$transition--main
+
+      &:hover
+        background-color: color.$color--grey-darker
+
+      &:focus-visible
+        outline: border.$border--wide color.$color--yellow
+        outline-offset: gap.$gap--hair-l
+
+

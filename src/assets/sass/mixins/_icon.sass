@@ -1,0 +1,19 @@
+@mixin icon($content)
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  line-height: 1
+
+  &::before
+    content: $content
+    font-family: "icon"
+    font-style: normal
+    font-weight: normal
+    display: inline-block
+    text-decoration: inherit
+    width: max-content
+    text-align: center
+    font-variant: normal
+    text-transform: none
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
