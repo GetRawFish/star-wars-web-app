@@ -14,7 +14,11 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: if [ -f package-lock.json ]; then
+          npm ci
+          else
+          npm install
+          fi
 
       - name: Run ESLint
         run: npm run lint
@@ -31,7 +35,11 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: if [ -f package-lock.json ]; then
+          npm ci
+          else
+          npm install
+          fi
 
       - name: Run unit tests
         run: npm run test:unit
@@ -48,7 +56,11 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: if [ -f package-lock.json ]; then
+          npm ci
+          else
+          npm install
+          fi
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
@@ -70,7 +82,11 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: if [ -f package-lock.json ]; then
+          npm ci
+          else
+          npm install
+          fi
 
       - name: Build production
         run: npm run build
