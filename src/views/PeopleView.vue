@@ -56,9 +56,23 @@ function resetPagination(): void {
   currentPage.value = 1
 }
 
+function sortPeople(): void {
+  if (sortNameBy.value !== SortDirection.none) {
+    filteredPeople.value = filteredPeople.value.sort((a, b) => {
+      return doSortByName(a.name, b.name, sortNameBy.value)
+    })
+  } else if (sortDateBy.value !== SortDirection.none) {
+    filteredPeople.value = filteredPeople.value.sort((a, b) => {
+      return doSortByDate(a.created, b.created, sortDateBy.value)
+    })
+  }
+}
+
 function doSearch(query: string): void {
   resetPagination()
   filteredPeople.value = doFilter(people.value, query) as PersonResponse[]
+
+  sortPeople()
 }
 
 function doSort(sortField: SortField): void {
@@ -79,15 +93,7 @@ function doSort(sortField: SortField): void {
     sortDateBy.value = sortDirection(sortDateBy.value)
   }
 
-  if (sortNameBy.value !== SortDirection.none) {
-    filteredPeople.value = filteredPeople.value.sort((a, b) => {
-      return doSortByName(a.name, b.name, sortNameBy.value)
-    })
-  } else if (sortDateBy.value !== SortDirection.none) {
-    filteredPeople.value = filteredPeople.value.sort((a, b) => {
-      return doSortByDate(a.created, b.created, sortDateBy.value)
-    })
-  }
+  sortPeople()
 }
 
 onMounted(async () => {
