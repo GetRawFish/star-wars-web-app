@@ -141,6 +141,8 @@ onMounted(async () => {
     <ContentFilter
       :sort-name-by="sortNameBy"
       :sort-date-by="sortDateBy"
+      sort-name-id="planet-name-sort"
+      sort-date-id="planet-date-sort"
       @do-sort="doSort"
       @do-submit="doSearch"
     />

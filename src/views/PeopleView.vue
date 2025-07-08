@@ -152,6 +152,8 @@ onMounted(async () => {
     <ContentFilter
       :sort-name-by="sortNameBy"
       :sort-date-by="sortDateBy"
+      sort-name-id="person-name-sort"
+      sort-date-id="person-date-sort"
       @do-sort="doSort"
       @do-submit="doSearch"
     />
