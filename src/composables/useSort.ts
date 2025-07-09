@@ -1,5 +1,5 @@
 import { useFormatDate } from '@/composables/useFormatDate'
-import { SortDirection } from '@/utils/enums.ts'
+import { SortDirection } from '@/types/enums'
 
 interface UseFormatDateReturn {
   doSortByName: (a: string, b: string, direction: SortDirection) => number

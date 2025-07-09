@@ -14,13 +14,13 @@ const router = createRouter({
     {
       path: '/people/:page?',
       name: 'people',
-      // route level code-splitting for lazy-load.
+      // Route level code-splitting for lazy-load.
       component: () => import('@/views/PeopleView.vue'),
     },
     {
       path: '/planets:page?',
       name: 'planets',
-      // route level code-splitting for lazy-load.
+      // Route level code-splitting for lazy-load.
       component: () => import('@/views/PlanetsView.vue'),
     },
   ],

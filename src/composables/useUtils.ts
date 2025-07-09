@@ -16,7 +16,7 @@ export function useUtils(): UseUtilsReturn {
   }
   function calcTotalPages(list?: unknown[], perPage = defaultPerPage): number {
     const { ceil } = Math
-    return list ? ceil(list?.length / perPage) : 1
+    return list && list.length > 0 ? ceil(list?.length / perPage) : 1
   }
   function chunkArray(list?: unknown[], currentPage = 1, perPage = defaultPerPage): unknown[] {
     const endIndex = currentPage * perPage

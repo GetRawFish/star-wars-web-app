@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SortDirection, SortField } from '@/utils/enums.ts'
+import { SortDirection, SortField } from '@/types/enums'
 
 import SearchField from '@/components/SearchField.vue'
 import SortButton from '@/components/SortButton.vue'
@@ -7,9 +7,16 @@ import SortButton from '@/components/SortButton.vue'
 type Props = {
   sortNameBy?: SortDirection
   sortDateBy?: SortDirection
+  sortNameId: string
+  sortDateId: string
 }
 
-const { sortNameBy = SortDirection.none, sortDateBy = SortDirection.none } = defineProps<Props>()
+const {
+  sortNameBy = SortDirection.none,
+  sortDateBy = SortDirection.none,
+  sortNameId,
+  sortDateId,
+} = defineProps<Props>()
 
 const mainClass = 'content-filter'
 const sortClass = `${mainClass}__sort`
@@ -30,8 +37,18 @@ function doSort(field: SortField): void {
     <div aria-label="Sort options" :class="sortClass">
       <span id="sort-label" class="text--s">Sort by:</span>
       <div role="group" aria-labelledby="sort-label" :class="`${sortClass}__buttons`">
-        <SortButton label="Name" :sort-by="sortNameBy" @do-sort="doSort(SortField.name)" />
-        <SortButton label="Created" :sort-by="sortDateBy" @do-sort="doSort(SortField.date)" />
+        <SortButton
+          :id="sortNameId"
+          label="Name"
+          :sort-by="sortNameBy"
+          @do-sort="doSort(SortField.name)"
+        />
+        <SortButton
+          :id="sortDateId"
+          label="Created"
+          :sort-by="sortDateBy"
+          @do-sort="doSort(SortField.date)"
+        />
       </div>
     </div>
   </div>

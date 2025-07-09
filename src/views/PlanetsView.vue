@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { usePageTitle } from '@/composables/usePageTitle'
 import { useFetch, useFetchResources } from '@/composables/useFetch'
-import { useFilterByQuery } from '@/composables/useFilterByQuery.ts'
-import { useSort } from '@/composables/useSort.ts'
-import { useUtils } from '@/composables/useUtils.ts'
-import type { PlanetResponse } from '@/utils/interfaces.ts'
-import { SortDirection, SortField } from '@/utils/enums.ts'
+import { useFilterByQuery } from '@/composables/useFilterByQuery'
+import { useSort } from '@/composables/useSort'
+import { useUtils } from '@/composables/useUtils'
+import type { PlanetResponse } from '@/types/interfaces'
+import { SortDirection, SortField } from '@/types/enums'
 import {
   emptyMessage,
   errorMessage,
@@ -16,12 +17,14 @@ import {
   contentListClass,
   contentEmptyClass,
   contentEmptyMessageClass,
-} from '@/utils/consts.ts'
+} from '@/utils/consts'
 
 import ContentFilter from '@/components/ContentFilter.vue'
 import PlanetCard from '@/components/PlanetCard.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import PaginationComponent from '@/components/PaginationComponent.vue'
+
+usePageTitle('SW | Round, planets are')
 
 const router = useRouter()
 const { doSortByDate, doSortByName } = useSort()
@@ -56,15 +59,29 @@ function resetPagination(): void {
   currentPage.value = 1
 }
 
+function sortPlanets(): void {
+  if (sortNameBy.value !== SortDirection.none) {
+    filteredPlanets.value = filteredPlanets.value.sort((a, b) => {
+      return doSortByName(a.name, b.name, sortNameBy.value)
+    })
+  } else if (sortDateBy.value !== SortDirection.none) {
+    filteredPlanets.value = filteredPlanets.value.sort((a, b) => {
+      return doSortByDate(a.created, b.created, sortDateBy.value)
+    })
+  }
+}
+
 function doSearch(query: string): void {
   resetPagination()
   filteredPlanets.value = doFilter(planets.value, query) as PlanetResponse[]
+
+  sortPlanets()
 }
 
 function doSort(sortField: SortField): void {
   resetPagination()
 
-  // choose sort direction
+  // Choose sort direction
   function sortDirection(currentSort: SortDirection): SortDirection {
     return currentSort === SortDirection.desc || currentSort === SortDirection.none
       ? SortDirection.asc
@@ -79,15 +96,7 @@ function doSort(sortField: SortField): void {
     sortDateBy.value = sortDirection(sortDateBy.value)
   }
 
-  if (sortNameBy.value !== SortDirection.none) {
-    filteredPlanets.value = filteredPlanets.value.sort((a, b) => {
-      return doSortByName(a.name, b.name, sortNameBy.value)
-    })
-  } else if (sortDateBy.value !== SortDirection.none) {
-    filteredPlanets.value = filteredPlanets.value.sort((a, b) => {
-      return doSortByDate(a.created, b.created, sortDateBy.value)
-    })
-  }
+  sortPlanets()
 }
 
 onMounted(async () => {
@@ -141,6 +150,8 @@ onMounted(async () => {
     <ContentFilter
       :sort-name-by="sortNameBy"
       :sort-date-by="sortDateBy"
+      sort-name-id="planet-name-sort"
+      sort-date-id="planet-date-sort"
       @do-sort="doSort"
       @do-submit="doSearch"
     />

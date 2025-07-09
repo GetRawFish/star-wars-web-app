@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SortDirection } from '@/utils/enums.ts'
+import { SortDirection } from '@/types/enums'
 
 type Props = {
+  id: string
   label: string
   sortBy?: SortDirection
 }
 
-const { sortBy = SortDirection.none, label } = defineProps<Props>()
+const { sortBy = SortDirection.none, label, id } = defineProps<Props>()
 
 const mainClass = 'sort-button'
 
@@ -26,6 +27,7 @@ function doSort(): void {
 <template>
   <button
     type="button"
+    :id="id"
     :aria-label="extendedLabel"
     :aria-pressed="isPressed"
     :class="[mainClass, 'text--s']"
