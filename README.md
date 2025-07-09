@@ -1,64 +1,154 @@
-# star-wars-web-app
+# Star Wars Single Page Application (Vue.js)
 
-This template should help get you started developing with Vue 3 in Vite.
+A responsive Vue.js application that displays Star Wars characters and planets data from the SWAPI (Star Wars API). Built with Vue 3, TypeScript, Sass and modern web technologies.
 
-## Recommended IDE Setup
+![App Home Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-1.jpg)
+![App People Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-2.jpg)
+![App Planets Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-3.jpg)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Browse Star Wars characters and planets
+- Search and sort functionalities
+- Responsive design with mobile support
+- Detailed view for each entity with related data
+- Client-side caching for better performance
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Local Setup & Run Instructions
 
-## Customize configuration
+### Prerequisites
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Node.js (v16 or higher recommended)
+- npm or yarn
+- Git
 
-## Project Setup
+### Installation
 
-```sh
-npm install
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/GetRawFish/star-wars-web-app.git
+   cd star-wars-web-app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   docker compose up
+   ```
+4. Open your browser to:
+   ```text
+   http://localhost:5173
+   ```
+   Testing
+
+### Running Tests
+
+To run unit tests with Vitest:
+
+```bash
+ npm run test:unit
+ # or
+ yarn test:unit
 ```
 
-### Compile and Hot-Reload for Development
+To run e2e tests with Playwright:
 
-```sh
-npm run dev
+```bash
+ npm run test:test:e2e
+ # or
+ yarn test:test:e2e
 ```
 
-### Type-Check, Compile and Minify for Production
+\*\* Before running first test you may install playwright on your machine:
 
-```sh
-npm run build
+```bash
+npx playwright install --with-deps
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## CI Integration
 
-```sh
-npm run test:unit
+The project uses GitHub Actions for continuous integration. The CI pipeline includes:
+
+1. ESLint checks
+2. Unit tests with Vitest
+3. Component tests
+4. TypeScript type checking
+
+View CI results in the GitHub Actions tab of the repository.
+
+## Architectural Decisions
+
+### State Management
+
+The application doesn't use a dedicated state management library (like Pinia or Vuex) because:
+
+- The state requirements are simple and can be handled effectively with Vue's built-in reactivity system
+- Component-level state and props provide sufficient data flow for this application's needs
+- Event buses and composables handle cross-component communication when needed
+- This approach minimizes complexity while maintaining good performance
+
+### Styling Approach
+
+The application uses a combination of modern styling solutions:
+
+1. Sass for advanced CSS features:
+
+- Variables for theming and consistent values
+- Nesting for better selector organization
+- Mixins for reusable style patterns
+- Import partials for modular CSS architecture
+
+2. Component-scoped styles through:
+
+- Vue SFC `<style lang="scss">` blocks
+- CSS Modules for isolated component styles
+
+Benefits of this combination:
+
+- Sass provides powerful CSS preprocessing capabilities
+- Scoped styles prevent naming conflicts
+- Optimal production builds through PurgeCSS
+- Maintainable and scalable styling architecture
+
+### Component Architecture
+
+The application follows Vue 3's Composition API with:
+
+- Smart/Container components that manage data
+- Dumb/Presentational components that handle UI
+- Layout components for consistent page structure
+- Composables for reusable logic
+
+### Performance Optimizations
+
+- Client-side caching of API responses
+- Lazy loading of routes and heavy components
+- Debounced search inputs
+- Efficient pagination implementation
+- Tree-shaking with Vite
+
+### Project Structure
+
+```text
+src/
+├── assets/          # Static assets
+├── components/      # Reusable components
+├── composables/     # Composition API functions
+├── router/          # Vue router configuration
+├── types/           # TypeScript definitions
+├── views/           # Route components
+├── App.vue          # Root component
+└── main.ts          # Application entry
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+### License
 
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+MIT License

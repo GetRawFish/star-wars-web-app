@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PlanetResponse } from '@/utils/interfaces'
+import type { PlanetResponse } from '@/types/interfaces'
 import { useFormatDate } from '@/composables/useFormatDate'
 import { useUtils } from '@/composables/useUtils'
 import {

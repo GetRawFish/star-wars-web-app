@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { useSort } from '@/composables/useSort'
-import { SortDirection } from '@/utils/enums'
+import { SortDirection } from '@/types/enums'
 
 describe('useSort', () => {
   const mockNames = ['Luke', 'Leia', 'Han', 'Chewbacca']

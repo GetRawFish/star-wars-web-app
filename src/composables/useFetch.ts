@@ -1,5 +1,5 @@
 import { ref, type Ref } from 'vue'
-import type { Resource } from '@/utils/interfaces'
+import type { Resource } from '@/types/interfaces'
 
 interface UseFetchReturn<T> {
   data: Ref<T | null>

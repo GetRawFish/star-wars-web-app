@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SortDirection, SortField } from '@/utils/enums.ts'
+import { SortDirection, SortField } from '@/types/enums'
 
 import SearchField from '@/components/SearchField.vue'
 import SortButton from '@/components/SortButton.vue'

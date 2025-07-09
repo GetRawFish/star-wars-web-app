@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { usePageTitle } from '@/composables/usePageTitle'
+
 const mainClass = 'home'
 const navClass = `${mainClass}__nav`
 const linkClass = `${navClass}__link`
+
+usePageTitle('SW | Much to learn')
 </script>
 
 <template>

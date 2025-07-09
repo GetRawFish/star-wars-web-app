@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import SortButton from '@/components/SortButton.vue'
-import { SortDirection } from '@/utils/enums'
+import { SortDirection } from '@/types/enums'
 
 describe('SortButton', () => {
   const defaultProps = {

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { usePageTitle } from '@/composables/usePageTitle'
 import { useFetch, useFetchResources } from '@/composables/useFetch'
 import { useFilterByQuery } from '@/composables/useFilterByQuery'
 import { useSort } from '@/composables/useSort'
 import { useUtils } from '@/composables/useUtils'
-import type { PlanetResponse } from '@/utils/interfaces'
-import { SortDirection, SortField } from '@/utils/enums'
+import type { PlanetResponse } from '@/types/interfaces'
+import { SortDirection, SortField } from '@/types/enums'
 import {
   emptyMessage,
   errorMessage,
@@ -22,6 +23,8 @@ import ContentFilter from '@/components/ContentFilter.vue'
 import PlanetCard from '@/components/PlanetCard.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import PaginationComponent from '@/components/PaginationComponent.vue'
+
+usePageTitle('SW | Round, planets are')
 
 const router = useRouter()
 const { doSortByDate, doSortByName } = useSort()

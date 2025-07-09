@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SortDirection } from '@/utils/enums'
+import { SortDirection } from '@/types/enums'
 
 type Props = {
   id: string
