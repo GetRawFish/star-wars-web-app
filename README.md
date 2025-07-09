@@ -2,7 +2,7 @@
 
 A responsive Vue.js application that displays Star Wars characters and planets data from the SWAPI (Star Wars API). Built with Vue 3, TypeScript, Sass and modern web technologies.
 
-![App Home Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-1.jpg)
+![App Home Screenshot](https://github.com/GetRawFish/star-wars-web-app/blob/develop/raw/screenshot-1.jpg)
 ![App People Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-2.jpg)
 ![App Planets Screenshot](https://github.com/GetRawFish/star-wars-web-app/raw/screenshot-3.jpg)
 
